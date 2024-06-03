@@ -1,5 +1,6 @@
 -- Data Cleaning Project
 -- Dataset  "Layoffs"
+-- REMOVE DUPLICATES, STARDARDIZED, CHECK NULLS & BLANKS, REMOVE UNNECESSARY COLUMNS --
 
 -- Start by Creating Database where you will import the table
 CREATE DATABASE world_layoffs;
