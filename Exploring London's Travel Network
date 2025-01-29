@@ -1,0 +1,39 @@
+-- This is from Datacamp and I tackle the challenge of exploring London's travel Network.
+-- London, or as the Romans called it "Londonium"! Home to over 8.5 million residents who speak over 300 languages 
+-- While the City of London is a little over one square mile (hence its nickname "The Square Mile"), Greater London has grown to encompass 32 boroughs spanning a total area of 606 square miles!
+
+-- In this project, I will work with a slightly modified version of a dataset containing information about public transport journey volume by transport type.
+-- The data has been loaded into a Snowflake database called TFL with a single table called JOURNEYS, including the following data:
+
+-- TFL.JOURNEYS
+-- Column	Definition	Data type
+-- MONTH	Month in number format, e.g., 1 equals January	INTEGER
+-- YEAR	Year	INTEGER
+-- DAYS	Number of days in the given month	INTEGER
+-- REPORT_DATE	Date that the data was reported	DATE
+-- JOURNEY_TYPE	Method of transport used	VARCHAR
+-- JOURNEYS_MILLIONS	Millions of journeys, measured in decimals	FLOAT
+
+-- QUESTION #1 : most_popular_transport_types
+
+SELECT TFL.JOURNEYS.JOURNEY_TYPE, SUM(TFL.JOURNEYS.JOURNEYS_MILLIONS) TOTAL_JOURNEYS_MILLIONS 
+FROM TFL.JOURNEYS
+   GROUP BY TFL.JOURNEYS.JOURNEY_TYPE
+   ORDER BY TOTAL_JOURNEYS_MILLIONS DESC
+
+-- QUESTION #2:emirates_airline_popularity
+SELECT MONTH, YEAR, ROUND(TFL.JOURNEYS.JOURNEYS_MILLIONS, 2) ROUNDED_JOURNEYS_MILLIONS
+FROM TFL.JOURNEYS
+  WHERE TFL.JOURNEYS.JOURNEY_TYPE = 'Emirates Airline'
+  AND ROUNDED_JOURNEYS_MILLIONS IS NOT NULL
+  ORDER BY ROUNDED_JOURNEYS_MILLIONS DESC
+  LIMIT 5;
+
+-- QUESTION #3: least_popular_years_tube
+SELECT TFL.JOURNEYS.YEAR, TFL.JOURNEYS.JOURNEY_TYPE, SUM(TFL.JOURNEYS.JOURNEYS_MILLIONS) AS TOTAL_JOURNEYS_MILLIONS
+FROM TFL.JOURNEYS
+  WHERE TFL.JOURNEYS.JOURNEY_TYPE = 'Underground & DLR'
+  GROUP BY TFL.JOURNEYS.YEAR,TFL.JOURNEYS.JOURNEY_TYPE
+  ORDER BY SUM(TFL.JOURNEYS.JOURNEYS_MILLIONS) ASC
+  LIMIT 5;
+
