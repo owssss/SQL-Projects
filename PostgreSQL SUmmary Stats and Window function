@@ -1,0 +1,21 @@
+Numbering rows
+The simplest application for window functions is numbering rows. 
+Numbering rows allows you to easily fetch the nth row. 
+For example, it would be very difficult to get the 35th row in any given table if you didn't have a column with each row's number.
+
+Task 1.1
+Number each row in the data set
+SELECT
+  *,
+  -- Assign numbers to each row
+  _____   ______  AS Row_N
+FROM Summer_Medals
+ORDER BY Row_N ASC;
+
+Answer
+SELECT
+  *,
+  -- Assign numbers to each row
+  ROW_NUMBER() OVER() AS Row_N
+FROM Summer_Medals
+ORDER BY Row_N ASC;
