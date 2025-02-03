@@ -19,3 +19,30 @@ SELECT
   ROW_NUMBER() OVER() AS Row_N
 FROM Summer_Medals
 ORDER BY Row_N ASC;
+
+Task 1.2
+Assign a number to each year in which Summer Olympic games were held.
+SELECT
+  Year,
+
+  -- Assign numbers to each year
+  ___ ___ AS Row_N
+FROM (
+  SELECT ___ ___
+  FROM Summer_Medals
+  ORDER BY Year ASC
+) AS Years
+ORDER BY Year ASC;
+
+Answer
+SELECT
+  Year,
+
+  -- Assign numbers to each year
+  ROW_NUMBER() OVER() AS Row_N
+FROM (
+  SELECT DISTINCT year
+  FROM Summer_Medals
+  ORDER BY Year ASC
+) AS Years
+ORDER BY Year ASC;
