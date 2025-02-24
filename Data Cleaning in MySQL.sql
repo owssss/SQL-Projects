@@ -250,5 +250,5 @@ ALTER TABLE layoffs_staging2
 DROP COLUMN row_num
 -- finally delete the row_num column which at the beginning we used it to filter duplicates.
 
--- This End the Data Cleaning Project Using MySQL == Thank You
+-- This End the Data Cleaning Project
 
