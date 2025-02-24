@@ -93,4 +93,4 @@ GROUP BY n.first_name;
 ```
 # Conclusion
 In this project, I demonstrated my proficiency in SQL by leveraging Common Table Expressions, aggregations, window functions, and joins.  
-Using these techniques, I uncovered key insights that met the client's needs and provided valuable education on the common usage patterns of American baby names.
+Using these techniques, I uncovered key insights that met the client's needs and provided valuable education on the common usage patterns of American baby names. After all, even the slightest information like baby names, would help a particular business.
